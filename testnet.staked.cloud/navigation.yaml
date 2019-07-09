@@ -43,6 +43,13 @@ folders:
         ordering:
         - Delegation
         - Reports
+      Terra:
+        ordering:
+        - Reports
+      Tezos:
+        ordering:
+        - Reports
+
     
     # The add_example_page script will add a page named 'Example Page' here.
     ordering:
@@ -50,3 +57,5 @@ folders:
     - Workflow Diagram
     - Cosmos
     - Dash
+    - Terra
+    - Tezos

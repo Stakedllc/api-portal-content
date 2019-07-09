@@ -1,4 +1,4 @@
-# DASH Reporting API guide
+# Cosmos Reporting API guide
 
 Staked's reporting API allows delegators to obtain delegation and rewards data.
 
@@ -10,7 +10,7 @@ Staked's reporting API allows delegators to obtain delegation and rewards data.
 
 - With Staked's reporting API, you may obtain: delegation balance and transactions.  Transactions, which encompass both delegation transactions and rewards transactions, can be queried by kind.
 
-- Currency amounts are recorded in a smaller denomination and should be converted to DASH by dividing by conversion factor `100,000,000`.
+- Currency amounts are recorded in a smaller denomination and should be converted to LUNA by dividing by conversion factor `1,000,000`.
    
 
 # Query by individual holding address
@@ -20,7 +20,7 @@ Staked's reporting API allows delegators to obtain delegation and rewards data.
 
 Shell example:
   ```bash
-    $ curl -X GET "http://testnet.staked.cloud/api/reports/DASH/delegator/Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA/balance?api_key=<YOURAPIKEY>"
+    $ curl -X GET "http://testnet.staked.cloud/api/reports/TERRA/delegator/terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3/balance?api_key=<YOURAPIKEY>"
   ```
 
 Output example:
@@ -28,11 +28,11 @@ Output example:
   {
     "balance": 5000000,
     "timestamp": "2019-07-08T17:09:08.753866",
-    "address": "Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA"
+    "address": "terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3"
   }
   ```
 
-- `balance`: Delegation balance - divide by `100,000,000` to convert to DASH
+- `balance`: Delegation balance - divide by `1,000,000` to convert to LUNA
 - `timestamp`: Timestamp of balance
 - `address`: Holding address
 
@@ -50,10 +50,11 @@ Delegation:
 Rewards:
 
 - `PAID`: Rewards which have been paid
+- `PEND`: Rewards which are accruing.  A rewards withdrawal transaction is required to receive the pending rewards. 
 
 Shell example:  
   ```bash
-    $ curl -X GET "http://testnet.staked.cloud/api/reports/DASH/delegator/Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA/txns?api_key=<YOURAPIKEY>&start=2019-04-02&kind=paid"
+    $ curl -X GET "http://testnet.staked.cloud/api/reports/TERRA/delegator/terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3/txns?api_key=<YOURAPIKEY>&start=2019-04-02&kind=paid"
   ```
 
 Output example:
@@ -65,7 +66,7 @@ Output example:
         "kind": "PAID",
         "transaction_time": "2019-06-05T21:17:06",
         "transaction_address": "4CA0DE34960577F5ED8D75CB573322FD5FD1A9F02ADEA9CDFB8C0C8F0DC90492",
-        "holding_address": "Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA",
+        "holding_address": "terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3",
         "amount": null,
         "reward": 193873,
         "fees": 100,
@@ -78,7 +79,7 @@ Output example:
         "kind": "PAID",
         "transaction_time": "2019-05-15T05:19:51",
         "transaction_address": "3471B104CC9A5FAF5CBF6441412D9E1E5108DE28CBB913E7E8440BBC842C8542",
-        "holding_address": "Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA",
+        "holding_address": "terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3",
         "amount": null,
         "reward": 109348,
         "fees": 0,
@@ -99,13 +100,13 @@ Output example:
 - `reward`: Amount of staking/validation rewards
 - `fees`: Amount of fees 
 - `total`: Sum of `reward` and `fees` 
-- `denom`: (Not applicable)
+- `denom`: Denomination, e.g. `uusd` corresponding to `1,000,000th` of USD, `ukrw`, `uluna`, `usdr`, etc.
 - `block_reference`: Block height of transaction
 
 `amount` applicable to `STK`/`UNSTK` transactions and
-`reward`, `fees`, and `total` applicable to `PAID` transactions
+`reward`, `fees`, and `total` applicable to `PAID`/`PEND` transactions
 
-Convert all currency amount values to DASH by dividing by conversion factor `100,000,000`.
+Convert all currency amount values to LUNA by dividing by conversion factor `1,000,000`.
 
 # Query all holding addresses associated with API key
 
@@ -113,7 +114,7 @@ Convert all currency amount values to DASH by dividing by conversion factor `100
 
 Shell example:
   ```bash
-    $ curl -X GET "http://testnet.staked.cloud/api/reports/DASH/balance?api_key=<YOURAPIKEY>"
+    $ curl -X GET "http://testnet.staked.cloud/api/reports/TERRA/balance?api_key=<YOURAPIKEY>"
   ```
 
 Output example:
@@ -124,23 +125,24 @@ Output example:
       {
         "balance": 746223000,
         "timestamp": "2019-05-04T12:22:54.605699",
-        "address": "Xg2sTDb7rTf3vmRjQmSXqT4qPu9dYJ66oA"
+        "address": "terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3"
       },
       {
         "balance": 751846367000,
         "timestamp": "2019-05-04T12:22:54.522052",
-        "address": "XgxdDDb7rTf3vmRjQmSXqT4qPu9dYJ60op"
+        "address": "terra1jd2yth4t5l2vez34q4m0wxngaazwy0e8csxubxs"
       }
     ]
   }
 
   ```
 
+
 ## Transactions
 
 Shell example:  
   ```bash
-    $ curl -X GET "http://testnet.staked.cloud/api/reports/DASH/txns?api_key=<YOURAPIKEY>"
+    $ curl -X GET "http://testnet.staked.cloud/api/reports/TERRA/txns?api_key=<YOURAPIKEY>"
   ```
 
 Output example:
@@ -152,7 +154,7 @@ Output example:
         "kind": "PAID",
         "transaction_time": "2019-05-30T23:33:32",
         "transaction_address": "97F20D63CD47F9A26FA0F54FF1E287EBA71D443AC050E9D0737998EB9287D47C",
-        "holding_address": "XgxdDDb7rTf3vmRjQmSXqT4qPu9dYJ60op",
+        "holding_address": "terra1hb3t7y2ar5vz64q8rchz5443s3tqnswrpxeaw3",
         "amount": null,
         "reward": 6131602004,
         "fees": null,
@@ -165,7 +167,7 @@ Output example:
         "kind": "STK",
         "transaction_time": "2019-05-04T00:19:59",
         "transaction_address": "EF166A9716B826EBE409777A5865160A3B3DB4C69B60105206C5099B3CA7FB27",
-        "holding_address": "XgxdDDb7rTf3vmRjQmSXqT4qPu9dYJ60op",
+        "holding_address": "terra1jd2yth4t5l2vez34q4m0wxngaazwy0e8csxubxs",
         "amount": 400000000000,
         "reward": null,
         "fees": null,
@@ -176,5 +178,6 @@ Output example:
     ...
   ]
   ```
+
 
 

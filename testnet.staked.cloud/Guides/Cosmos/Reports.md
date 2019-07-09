@@ -34,7 +34,7 @@ Output example:
 
 - `balance`: Delegation balance - divide by `1,000,000` to convert to ATOM
 - `timestamp`: Timestamp of balance
-= `address`: Holding address
+- `address`: Holding address
 
 ## Transactions
 
@@ -71,6 +71,7 @@ Output example:
         "reward": 193873,
         "fees": 100,
         "total": 193973,
+        "denom": null,
         "block_reference": 554796
     },
     {
@@ -83,6 +84,7 @@ Output example:
         "reward": 109348,
         "fees": 0,
         "total": 109348,
+        "denom": null,
         "block_reference": 283855
     },
     ...
@@ -98,6 +100,7 @@ Output example:
 - `reward`: Amount of staking/validation rewards
 - `fees`: Amount of fees 
 - `total`: Sum of `reward` and `fees` 
+- `denom`: (Not applicable)
 - `block_reference`: Block height of transaction
 
 `amount` applicable to `STK`/`UNSTK` transactions and
@@ -156,6 +159,7 @@ Output example:
         "reward": 6131602004,
         "fees": null,
         "total": 6131602004,
+        "denom": null,
         "block_reference": 480900
     },
     {
@@ -168,6 +172,7 @@ Output example:
         "reward": null,
         "fees": null,
         "total": 0,
+        "denom": null,
         "block_reference": 142726
     },
     ...
