@@ -65,12 +65,27 @@ You will need an API key to access Staked's APIs. If you don't already have an A
 ## Step 3: Sign the Transaction with Your Private Key
 
 - Assumes `gaiacli` and that you have `--recover` a key with the alias `MyKey`
-- With the json from above, copy `attributes` into a file `txn_to_sign.json`. Then, rename `attributes` to `txnToSign`.
-- -*OR*-
-- If you prefer to use `jq`, you can pipe the curl command into jq like:  
+- Build `txn_to_sign.json`:
+  - With the json from above, copy the content of `attributes` into a file `txn_to_sign.json`. Then, rename `tx` to `value`.
 
-  ```bash
-  $ curl ... | jq ' {txnToSign: .attributes} ' > txn_to_sign.json
+    -*OR*-
+
+  - With `jq`:  
+
+    ```bash
+    $ curl ... | jq ' .attributes | . + {value: .tx} | del(.tx) ' > txn_to_sign.json
+    ```
+
+- `txn_to_sign.json` should look like:
+
+  ```json
+  {
+    "value": {
+      ...
+    },
+    "type": "...",
+    "chain_id": "..."
+  }
   ```
 
 - With `txn_to_sign.json`, run the following, with `chain-id` from the POST response:  
