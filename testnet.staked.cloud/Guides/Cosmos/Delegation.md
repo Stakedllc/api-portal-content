@@ -27,7 +27,7 @@ You will need an API key to access Staked's APIs. If you don't already have an A
     "address": "gaia-cosmos1scdqxnwvhng5nhzfeptgtu57nh48mc5hymd5sk",
     "chain": "COSMOS",
     "attributes": {
-      "tx": {
+      "value": {
         "fee": {
           "gas": "99429",
           "amount": [
@@ -66,14 +66,14 @@ You will need an API key to access Staked's APIs. If you don't already have an A
 
 - Assumes `gaiacli` and that you have `--recover` a key with the alias `MyKey`
 - Build `txn_to_sign.json`:
-  - With the json from above, copy the content of `attributes` into a file `txn_to_sign.json`. Then, rename `tx` to `value`.
+  - With the json from above, copy the content of `attributes` into a file `txn_to_sign.json`.
 
     -*OR*-
 
   - With `jq`:  
 
     ```bash
-    $ curl ... | jq ' .attributes | . + {value: .tx} | del(.tx) ' > txn_to_sign.json
+    $ curl ... | jq ' .attributes  ' > txn_to_sign.json
     ```
 
 - `txn_to_sign.json` should look like:
