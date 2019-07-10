@@ -25,10 +25,10 @@ You will need an API key to access Staked's APIs. If you don't already have an A
 
 To receive Cosmos delegation rewards you will need 1,000,000muon (5 distributions from the faucet). We provide up to an additional 400,000muon (1,400,000muon total) to accommodate for accidents or excessive fees during testing. If, for whatever reason, you need additional tokens please get in contact.
 
-To view your current distributions (and other data) use the `partners` ([Documentation](https://developer.staked.cloud/docs/testnet.staked.cloud/1/routes/partners/get)) endpoint.  
+To view your current distributions (and other data) use the `partners` ([Documentation](https://developer.staked.cloud/docs/testnet.staked.cloud/1/routes/partners/whoami/get)) endpoint.  
 
 - Shell example:
 
   ```bash
-    $ curl -H "content-type:application/json" "http://testnet.staked.cloud/api/partners?api_key=<YOURAPIKEY>"
+    $ curl -H "content-type:application/json" "http://testnet.staked.cloud/api/partners/whoami?api_key=<YOURAPIKEY>"
   ```
