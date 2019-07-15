@@ -115,7 +115,7 @@ You will need an API key to access Staked's APIs. If you don't already have an A
     "attributes": {
       "value": {
         ...
-        signatures: [
+        "signatures": [
           ...
         ]
       }
