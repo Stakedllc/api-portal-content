@@ -1,4 +1,4 @@
-# Cosmos Reporting API guide
+# Terra Reporting API guide
 
 Staked's reporting API allows delegators to obtain delegation and rewards data.
 
