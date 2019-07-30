@@ -19,7 +19,7 @@ You will need an API key to access Staked's APIs. If you don't already have an A
     $ curl -X POST -H "content-type:application/json" -d '{"address": "yourtestnetaddress", "chain": "cosmos"}' "http://testnet.staked.cloud/api/partners/distribute?api_key=<YOURAPIKEY>"
   ```
 
-- The response will be a json object with your new distributions, distributions to date, and remaining distrubtions, in muon. 
+- The response will be a json object with your new distributions, distributions to date, and remaining distrubtions, in muon.
 
 ## Step 3: Usage
 
